@@ -74,16 +74,46 @@ public:
 
     /********** Properties **********/
 
+    /**
+     * @brief Geta the Cruise Speed value in mph.
+     * 
+     * @return uint16_t 
+     */
     inline uint16_t GetCruiseSpeed() const { return muiCruiseSpeed; }
 
+    /**
+     * @brief Gets the Battery Capacity value in kWh.
+     * 
+     * @return uint16_t 
+     */
     inline uint16_t GetBatteryCapacity() const { return muiBatteryCapacity; }
 
+    /**
+     * @brief Gets the Time to Charge value in hours.
+     * 
+     * @return float 
+     */
     inline float GetTimeToCharge() const { return mfTimeToCharge; }
 
+    /**
+     * @brief Gets the Energy Use value in kWh/mile.
+     * 
+     * @return float 
+     */
     inline float GetEnergyUse() const { return mfEnergyUse; }
 
+    /**
+     * @brief Gets the Passengers count.
+     * 
+     * @return uint8_t 
+     */
     inline uint8_t GetPassengers() const { return muiPassengers; }
 
+    /**
+     * @brief Gets the Fault Probability value.
+     * 
+     * @return float 
+     */
     inline float GetFaultProbability() const { return mfFaultProbability; }
 
 
@@ -100,4 +130,4 @@ protected:
     float mfFaultProbability;
 };
 
-#endif
+#endif // _AIRCRAFT_H_
