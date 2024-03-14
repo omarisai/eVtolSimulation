@@ -1,0 +1,57 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directory
+build/
+
+# Dependency directory
+dependencies/
+
+# IDE specific files
+.vscode/
+.idea/
+*.sln
+*.vcxproj
+*.xcodeproj
+*.user
+*.userprefs
+*.pidb
+*.opensdf
+*.sdf
+*.suo
+*.sln.docstates
+*.cproject
+*.settings
+*.launch
+*.project
+*.workspace
+
+# Miscellaneous
+*.log
+*.swp
+*.tmp
+*.bak
+*.DS_Store
