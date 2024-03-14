@@ -59,6 +59,8 @@ Some coding guidelines to ensure consistency and readability.
 2. Variable Naming: Use camel case for variable names. Prefix variables with the appropriate type abbreviation, such as `ui` for `uint16_t`. For example:
    ```cpp
    uint16_t uiVariableName;
+   MyClass oMyObject;
+   MyEnum eMyVariable;
    ```
 
 3. Indentation: Use consistent indentation for switch cases. Indent the case statements within the switch block. For example:
