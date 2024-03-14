@@ -119,3 +119,14 @@ Some coding guidelines to ensure consistency and readability.
        int mVariable; ///< The value of the variable.
    };
    ```
+
+7. Header File Guards: Use header file guards to prevent multiple inclusion of the same header file. The guard should start and end with an underscore character. For example:
+
+    ```cpp
+    #ifndef _MY_HEADER_H_
+    #define _MY_HEADER_H_
+
+    // code here
+
+    #endif // _MY_HEADER_H_
+    ```
