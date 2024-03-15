@@ -28,17 +28,20 @@ You will simulate using these vehicle for 3 hours. Of course your simulation sho
 There are only three chargers available for all 20 vehicles! A single charger can only be used by one vehicle at a time. Assume the chargers can charge the batteries in the Time to Charge time listed for each vehicle. 
 
 Keep track of the following statistics per vehicle type: 
-- average flight time per flight
-- average distance traveled per flight
-- average time charging per charge session
-- total number of faults
-- total number of passenger miles. 
-	For example, if there are 2 vehicles carrying 4 passengers on a vehicle that cruises 	for 1 hour at 100 mph, total number of passenger miles is 2 * 4 * 1 * 100 = 800.
+- average flight time per flight <span style="color:#009688;">**NOTE:** Depends on the vehicle type properties, but is always the same for vehicles of the same type, because vehicles are always using full battery on every flight, likely a function in the base class calling the properties getters.</span>
+- average distance traveled per flight <span style="color:#009688;">**NOTE:** Same as the previous one.</span>
+- average time charging per charge session <span style="color:#009688;">**NOTE:** This is similar to the previous one. <span style="color:#32CD32;">ASSUMING</span> We are always charging full battery, <span style="color:#32CD32;">ASSUMING</span> Waiting time for a free charger is not part of the charger session.</span>
+- total number of faults <span style="color:#009688;">**NOTE:** Depends on the probability, it can be calculated after every trip. To record per vehicle type it requires a variable shared among the vehicles of the same type. <span style="color:#32CD32;">ASSUMING</span> The faults only occur during the flight time.</span>
+- total number of passenger miles.  <span style="color:#009688;">**NOTE:** Same as the previous one.</span>
+	
+    For example, if there are 2 vehicles carrying 4 passengers on a vehicle that cruises 	for 1 hour at 100 mph, total number of passenger miles is 2 * 4 * 1 * 100 = 800.
 
 Assume that:
 - Each vehicle starts the simulation with a fully-charged battery
 - Each vehicle instantaneously reaches Cruise Speed
 - Each vehicle is airborne for the full use of the battery, and is immediately in line for the charger after running out of battery power.
+
+<span style="color:#009688;">**NOTE:** Each vehicle type requires its class, each vehicle shares properties with vehicles of the same type, so properties should be stored in static const variables per vehicle type class to don’t allocate them per instance. It is required to have pure virtual getters in the base class to retrieve the properties values.</span>
 
 Please include the statistics recorded during at least one run of the simulation in your submission.
 
