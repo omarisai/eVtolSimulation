@@ -1,18 +1,17 @@
+#ifndef _CHARGER_H_
+#define _CHARGER_H_
+
+#include "aircrafts/Aircraft.h"
+
 /**
  * @brief Generic class for the chargers, which will be used to charge the
  *        aircrafts.
  * 
- * @note  This is the default charger, but it can be derived to create different
+ * @note This is the default charger, but it can be derived to create different
  *       chargers with different properties, for example, a charger that have a
  *       location X, Y in a 2D world.
  * 
  */
-
-#ifndef _CHARGER_H_
-#define _CHARGER_H_
-
-#include "Aircraft.h"
-
 class Charger
 {
 public:
@@ -28,7 +27,7 @@ public:
     /**
      * @brief Gets the state of the charger.
      * 
-     * @return State    The state of the charger.
+     * @return The state of the charger.
      */
     inline State GetState() const { return meState; }
 
@@ -40,7 +39,7 @@ public:
      * 
      * @param oAircraft     The aircraft to charge.
      * 
-     * @return float        The time it takes to charge the aircraft in hours.
+     * @return The time it takes to charge the aircraft in hours.
      */
     virtual float ChargeAircraft(Aircraft* oAircraft);
 
