@@ -1,5 +1,6 @@
 /**
- * @brief Implementation of the SimulationWorld class methods, constructors, and destructor.
+ * @brief Implementation of the SimulationWorld class methods,
+ *        constructors, and destructor.
  * 
  */
 
@@ -17,7 +18,7 @@ using namespace std;
  * @param uiMaxChargers      The maximum number of chargers that can be
  *                           in the world at the same time.
  */
-SimulationWorld::SimulationWorld(uint32_t uiMaxAircrafts, uint32_t uiMaxChargers)
+SimulationWorld::SimulationWorld(uint8_t uiMaxAircrafts, uint8_t uiMaxChargers)
     : muiMaxAircrafts(uiMaxAircrafts), muiMaxChargers(uiMaxChargers)
 {
     // Reserve memory for the aircrafts and chargers vectors.
@@ -40,8 +41,8 @@ SimulationWorld::~SimulationWorld()
  * @brief Add an aircraft to the world.
  * 
  * @param oAircraft     The aircraft to add.
- * @return true         If the aircraft was added successfully.
- * @return false        If the aircraft was not added.
+ * 
+ * @return If the aircraft was added successfully.
  */
 bool SimulationWorld::AddAircraft(const Aircraft* oAircraft)
 {
@@ -57,34 +58,11 @@ bool SimulationWorld::AddAircraft(const Aircraft* oAircraft)
 }
 
 /**
- * @brief Remove an aircraft from the world.
- * 
- * @param oAircraft     The aircraft to remove.
- * @return true         If the aircraft was removed successfully.
- * @return false        If the aircraft was not removed.
- */
-bool SimulationWorld::RemoveAircraft(const Aircraft* oAircraft)
-{
-    // Find the aircraft in the world.
-    auto itAircraft = find(moAircrafts.begin(), moAircrafts.end(), oAircraft);
-
-    // Check if the aircraft was found.
-    if (itAircraft != moAircrafts.end())
-    {
-        // Remove the aircraft from the world.
-        moAircrafts.erase(itAircraft);
-        return true;
-    }
-
-    return false;
-}
-
-/**
  * @brief Add a charger to the world.
  * 
  * @param oCharger      The charger to add.
- * @return true         If the charger was added successfully.
- * @return false        If the charger was not added.
+ * 
+ * @return If the charger was added successfully.
  */
 bool SimulationWorld::AddCharger(const Charger* oCharger)
 {
@@ -93,30 +71,6 @@ bool SimulationWorld::AddCharger(const Charger* oCharger)
     {
         // Add the charger to the world.
         moChargers.push_back(oCharger);
-        return true;
-    }
-
-    return false;
-}
-
-/**
- * @brief Remove a charger from the world.
- * 
- * @param oCharger      The charger to remove.
- * @return true         If the charger was removed successfully.
- * @return false        If the charger was not removed.
- */
-
-bool SimulationWorld::RemoveCharger(const Charger* oCharger)
-{
-    // Find the charger in the world.
-    auto itCharger = find(moChargers.begin(), moChargers.end(), oCharger);
-
-    // Check if the charger was found.
-    if (itCharger != moChargers.end())
-    {
-        // Remove the charger from the world.
-        moChargers.erase(itCharger);
         return true;
     }
 
