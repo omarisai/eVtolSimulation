@@ -36,12 +36,14 @@ namespace SimpleWorld
 
         cout << "Aircrafts added to the world:";
 
+        // TODO: Use a random seed based on the current time.
+
         // Create the aircrafts from the start, choosing a random
         // company for each one.
         for (uint8_t i = 0; i < uiAircrafts; i++)
         {
             // Choose a random company for the aircraft.
-            int iCompany = rand() % static_cast<int>(2); //AircraftCompany::TotalCompanies);
+            int iCompany = rand() % static_cast<int>(AircraftCompany::TotalCompanies);
             AircraftCompany eCompany = static_cast<AircraftCompany>(iCompany);
             
             // Create the aircraft.

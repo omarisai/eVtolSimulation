@@ -3,12 +3,12 @@
  * 
  */
 
+#include "worlds/SimpleWorld/World.h"
+
 #include <iostream>
 
-#include "worlds/SimulationWorld.h"
-#include "worlds/SimpleWorld.h"
-
 using namespace std;
+using namespace SimpleWorld;
 
 int main()
 {
@@ -17,16 +17,13 @@ int main()
     const uint8_t kuiSimulationHours = 3;
 
     // Create a simulation world with 10 aircrafts and 5 chargers.
-    SimulationWorld* poWorld = new SimpleWorld(kuiAircraftsCount, kuiChargersCount);
+    World poWorld(kuiAircraftsCount, kuiChargersCount);
 
     // Run the simulation for 3 hours.
-    poWorld->RunSimulation(kuiSimulationHours);
+    poWorld.RunSimulation(kuiSimulationHours);
 
     // Print the statistics.
-    poWorld->PrintStatistics();
-
-    // Destroy the world.
-    delete poWorld;
+    poWorld.PrintStatistics();
 
     return 0;
 }
