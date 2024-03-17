@@ -2,6 +2,7 @@
 #define _AIRCRAFTSPECS_H_
 
 #include <cstdint>
+#include <string>
 
 using namespace std;
 
@@ -111,6 +112,20 @@ public:
     inline float GetFaultProbability() const { return mkfFaultProbability; }
 
     /**
+     * @brief Get the total number of faults.
+     * 
+     * @return The total number of faults. 
+     */
+    inline uint16_t TotalNumberOfFaults() const { return muiTotalNumberOfFaults; }
+
+    /**
+     * @brief Get the total number of passenger miles.
+     * 
+     * @return The total number of passenger miles. 
+     */
+    inline uint16_t TotalNumberOfPassengerMiles() const { return muiTotalNumberOfPassengerMiles; }
+
+    /**
      * @brief Get the average flight time per flight in hours.
      * 
      * @return The average flight time. 
@@ -132,18 +147,11 @@ public:
     float AverageTimeChargingPerChargeSession() const;
 
     /**
-     * @brief Get the total number of faults.
+     * @brief Get the aircraft company name in string format.
      * 
-     * @return The total number of faults. 
+     * @return The company name.
      */
-    uint16_t TotalNumberOfFaults() const;
-
-    /**
-     * @brief Get the total number of passenger miles.
-     * 
-     * @return The total number of passenger miles. 
-     */
-    uint16_t TotalNumberOfPassengerMiles() const;
+    string CompanyName() const;
 
 private:
     /********** Constants **********/
@@ -158,10 +166,14 @@ private:
     /********** Variables **********/
     uint16_t muiTotalNumberOfFaults;
     uint16_t muiTotalNumberOfPassengerMiles;
+    uint8_t muiTotalAircrafts;
 
     /********** Static Variables **********/
 public:
-    static const AircraftType mskoAircraftTypes[];
+    static AircraftType msoAircraftTypes[];
+
+// TODO: Remove this and add a setter methods for muiTotalAircrafts.
+friend class Aircraft;
 };
 
 #endif // _AIRCRAFTSPECS_H_

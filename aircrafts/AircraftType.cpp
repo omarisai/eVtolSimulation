@@ -7,7 +7,7 @@
 #include "AircraftType.h"
 
 // Loading all the types of aircrafts at build time.
-/*static*/ const AircraftType AircraftType::mskoAircraftTypes[] = {
+/*static*/ AircraftType AircraftType::msoAircraftTypes[] = {
     AircraftType(AircraftCompany::Alpha,   120/*mph*/, 320/*kWh*/, 0.6 /*hours*/, 1.6/*kWh/mile*/, 4, 0.25),
     AircraftType(AircraftCompany::Bravo,   100/*mph*/, 100/*kWh*/, 0.2 /*hours*/, 1.5/*kWh/mile*/, 5, 0.10),
     AircraftType(AircraftCompany::Charlie, 160/*mph*/, 220/*kWh*/, 0.8 /*hours*/, 2.2/*kWh/mile*/, 3, 0.05),
@@ -16,7 +16,7 @@
 };
 
 // Check if the number of aircraft types matches the number of companies.
-static_assert(sizeof(AircraftType::mskoAircraftTypes) / sizeof(AircraftType) == (size_t)AircraftCompany::TotalCompanies,
+static_assert(sizeof(AircraftType::msoAircraftTypes) / sizeof(AircraftType) == (size_t)AircraftCompany::TotalCompanies,
               "The number of aircraft types does not match the number of companies.");
 
 AircraftType::AircraftType(AircraftCompany eCompany,
@@ -32,7 +32,23 @@ AircraftType::AircraftType(AircraftCompany eCompany,
       mkfTimeToCharge(fTimeToCharge),
       mkfEnergyUse(fEnergyUse),
       mkuiPassengers(uiPassengers),
-      mkfFaultProbability(fFaultProbability)
+      mkfFaultProbability(fFaultProbability),
+      muiTotalNumberOfFaults(0),
+      muiTotalNumberOfPassengerMiles(0),
+      muiTotalAircrafts(0)
 {
     // Nothing to do here.
+}
+
+string AircraftType::CompanyName() const
+{
+    switch (mkeCompany)
+    {
+        case AircraftCompany::Alpha:   return "Alpha";
+        case AircraftCompany::Bravo:   return "Bravo";
+        case AircraftCompany::Charlie: return "Charlie";
+        case AircraftCompany::Delta:   return "Delta";
+        case AircraftCompany::Echo:    return "Echo";
+        default:                       return "Unknown";
+    }
 }
