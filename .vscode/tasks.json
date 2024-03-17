@@ -13,6 +13,7 @@
                 "${workspaceFolder}/*.cpp",
                 "${workspaceFolder}/aircrafts/*.cpp",
                 "${workspaceFolder}/worlds/*.cpp",
+                "${workspaceFolder}/worlds/SimpleWorld/*.cpp",
                 "-o",
                 "${workspaceFolder}/SimpleWorld.exe"
             ],

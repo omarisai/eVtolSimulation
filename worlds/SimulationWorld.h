@@ -92,6 +92,24 @@ public:
     virtual void PrintStatistics() const = 0;
 
 protected:
+    /********** Methods **********/
+
+    /**
+     * @brief Get the aircrafts in the world.
+     * 
+     * @return The aircrafts.
+     * 
+     */
+    const vector<Aircraft*>& GetAircrafts() const { return moAircrafts; }
+
+    /**
+     * @brief Get the chargers in the world.
+     * 
+     * @return The chargers.
+     * 
+     */
+    const vector<Charger*>& GetChargers() const { return moChargers; }
+
     /**
      * @brief Add an aircraft to the world.
      * 
@@ -100,7 +118,7 @@ protected:
      * @return If the aircraft was added successfully.
      * 
      */
-    bool AddAircraft(const Aircraft* oAircraft);
+    bool AddAircraft(Aircraft* oAircraft);
 
     /**
      * @brief Add a charger to the world.
@@ -110,15 +128,30 @@ protected:
      * @return If the charger was added successfully.
      * 
      */
-    bool AddCharger(const Charger* oCharger);
+    bool AddCharger(Charger* oCharger);
 
+    /**
+     * @brief Set the simulation time.
+     * 
+     * @param uiTime        The simulation time.
+     * 
+     */
+    inline void SetSimulationTime(uint16_t uiTime) { muiSimulationTime = uiTime; }
 
-    /********** Variables **********/
-
-    vector<const Aircraft*> moAircrafts;
-    vector<const Charger*> moChargers;
+    /**
+     * @brief Get the simulation time.
+     * 
+     * @return The simulation time.
+     * 
+     */
+    inline uint16_t GetSimulationTime() const { return muiSimulationTime; }
 
 private:
+    /********** Variables **********/
+
+    vector<Aircraft*> moAircrafts;
+    vector<Charger*> moChargers;
+    uint16_t muiSimulationTime;
     uint8_t muiMaxAircrafts;
     uint8_t muiMaxChargers;
 };
