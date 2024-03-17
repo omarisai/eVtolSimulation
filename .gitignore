@@ -31,7 +31,7 @@ build/
 dependencies/
 
 # IDE specific files
-.vscode/
+.vscode/**
 .idea/
 *.sln
 *.vcxproj
@@ -55,3 +55,6 @@ dependencies/
 *.tmp
 *.bak
 *.DS_Store
+
+# VS Code build tasks
+!.vscode/tasks.json
