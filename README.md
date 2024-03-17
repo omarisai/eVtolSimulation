@@ -81,14 +81,22 @@ Some coding guidelines to ensure consistency and readability.
    switch (variable)
    {
        case 1:
+       {
            // code here
-           break;
+       }
+       break;
+
        case 2:
+       {
            // code here
-           break;
+       }
+       break;
+
        default:
+       {
            // code here
-           break;
+       }
+       break;
    }
    ```
 
@@ -112,7 +120,7 @@ Some coding guidelines to ensure consistency and readability.
    };
    ```
 
-6. Comments: Use Doxygen-style comments to document your code. Provide clear and concise explanations for classes, functions, and member variables. For example:
+6. Comments: Use Doxygen-style comments to document the code, only in .h files. Provide clear and concise explanations for classes, functions, and member variables. For example:
    ```cpp
    /**
     * @brief This is a class that represents a MyClass.

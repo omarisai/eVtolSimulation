@@ -10,14 +10,7 @@
 
 using namespace std;
 
-/**
- * @brief Construct a new Simulation World object.
- * 
- * @param uiMaxAircrafts     The maximum number of aircrafts that can be
- *                           in the world at the same time.
- * @param uiMaxChargers      The maximum number of chargers that can be
- *                           in the world at the same time.
- */
+
 SimulationWorld::SimulationWorld(uint8_t uiMaxAircrafts, uint8_t uiMaxChargers)
     : muiMaxAircrafts(uiMaxAircrafts), muiMaxChargers(uiMaxChargers)
 {
@@ -26,10 +19,6 @@ SimulationWorld::SimulationWorld(uint8_t uiMaxAircrafts, uint8_t uiMaxChargers)
     moChargers.reserve(muiMaxChargers);
 }
 
-/**
- * @brief Destroy the Simulation World object.
- * 
- */
 SimulationWorld::~SimulationWorld()
 {
     // Clear the aircrafts and chargers vectors.
@@ -37,14 +26,7 @@ SimulationWorld::~SimulationWorld()
     moChargers.clear();
 }
 
-/**
- * @brief Add an aircraft to the world.
- * 
- * @param oAircraft     The aircraft to add.
- * 
- * @return If the aircraft was added successfully.
- */
-bool SimulationWorld::AddAircraft(const Aircraft* oAircraft)
+bool SimulationWorld::AddAircraft(Aircraft* oAircraft)
 {
     // Check if there is space for the aircraft.
     if (moAircrafts.size() < muiMaxAircrafts)
@@ -54,17 +36,11 @@ bool SimulationWorld::AddAircraft(const Aircraft* oAircraft)
         return true;
     }
 
+    // TODO: Throw an exception if there is no space for the aircraft.
     return false;
 }
 
-/**
- * @brief Add a charger to the world.
- * 
- * @param oCharger      The charger to add.
- * 
- * @return If the charger was added successfully.
- */
-bool SimulationWorld::AddCharger(const Charger* oCharger)
+bool SimulationWorld::AddCharger(Charger* oCharger)
 {
     // Check if there is space for the charger.
     if (moChargers.size() < muiMaxChargers)
@@ -74,5 +50,6 @@ bool SimulationWorld::AddCharger(const Charger* oCharger)
         return true;
     }
 
+    // TODO: Throw an exception if there is no space for the charger.
     return false;
 }
