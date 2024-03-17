@@ -47,6 +47,16 @@ Please include the statistics recorded during at least one run of the simulation
 
 Please do not hesitate to reach out to ask any questions about the problem! However, if you find yourself making an assumption that we haven’t explained explicitly, you may simply document your assumption. It’s interesting to us to hear what assumptions you made and why.
 
+# Other assumptions
+
+ - This simulation requires a virtual world, on this virtual world the only kind of known aircrafts are eVTOL,
+   so aircraft is always referring to a eVTOL aircraft.
+ - We don't need to simulate large quantities of aircrafts or chargers, limiting up to 255.
+ - Limiting the simulation time to 65535, even 255 could be a long simulation time.
+ - We want the flexibility to load different kind of worlds, for example a 2D world were chargers has
+   different X,Y locations and aircrafts has to do travels from/to defined locations, for this reason
+   I am creating a base class called SimulationWorld.
+
 # Coding guidelines
 
 Some coding guidelines to ensure consistency and readability. 
