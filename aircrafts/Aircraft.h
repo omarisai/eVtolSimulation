@@ -6,6 +6,7 @@
 #include <cstdint>
 
 using namespace std;
+class Charger;
 
 /**
  * @brief The Aircraft class. Encapsulates all the common aircraft
@@ -26,9 +27,13 @@ public:
      */
     enum class BatteryState
     {
+        // The battery is empty.
         Empty,
+        // The battery is charging.
         Charging,
+        // The battery is full.
         Full,
+        // The battery is discharging (flying).
         Discharging,
     };
 
@@ -41,17 +46,47 @@ public:
      */
     Aircraft(AircraftCompany eCompany);
 
+    /********** Destructor **********/
+
+    /**
+     * @brief Destroy the Aircraft object.
+     * 
+     */
+    virtual ~Aircraft() {}
+
+
+    /********** Properties **********/
+
+    /**
+     * @brief Gets if the aircraft is charging.
+     * 
+     * @return If the aircraft is charging.
+     */
+    inline bool IsCharging() const { return meBatteryState == BatteryState::Charging; }
+
+    /**
+     * @brief Gets the current charger attached to the aircraft.
+     * 
+     * @return The charger attached to the aircraft. 
+     */
+    inline Charger* GetCharger() const { return mpoCharger; }
+
+    /**
+     * @brief Gets the aircraft Id.
+     * 
+     * @return The aircraft Id.
+     */
+    inline uint8_t GetId() const { return muiAircraftId; }
+
 
     /********** Methods **********/
 
     /**
-     * @brief Create an aircraft.
+     * @brief Gets the aircraft name composed of the company name and the Id.
      * 
-     * @param AircraftType*         The aircraft type.
-     * 
-     * @return The new created aircraft.
+     * @return The aircraft name.
      */
-    Aircraft* CreateAircraft(AircraftType* poAircraftType);
+    string GetName() const;
 
     /**
      * @brief Take off the aircraft.
@@ -61,7 +96,7 @@ public:
     float TakeOff();
     
     /**
-     * @brief Land the aircraft.
+     * @brief Land the aircraft indefinitely.
      * 
      */
     void Land();
@@ -69,13 +104,24 @@ public:
     /**
      * @brief Charge the aircraft.
      * 
+     * @param poCharger     The charger to use to charge the aircraft.
+     * 
      * @return The time it takes to charge the aircraft in hours.
      */
-    float ChargeAircraft();
+    float ChargeAircraft(Charger* poCharger);
+
+    /**
+     * @brief Stop charging the aircraft and return the charger.
+     * 
+     * @return The charger that was charging the aircraft.
+     */
+    Charger* StopCharging();
 
 private:
-    const AircraftType* mkpoAircraftType;
+    AircraftType* mpoAircraftType;
+    Charger* mpoCharger;
     BatteryState meBatteryState;
+    uint8_t muiAircraftId;
 };
 
 #endif // _AIRCRAFT_H_

@@ -15,33 +15,47 @@
 class Charger
 {
 public:
-    /********** Types **********/
-    enum class State
-    {
-        Available,
-        Charging
-    };
+    /********** Constructors **********/
+
+    /**
+     * @brief Construct a new Charger object.
+     * 
+     */
+    Charger();
+
+    /********** Destructor **********/
+
+    /**
+     * @brief Destroy the Charger object.
+     * 
+     */
+    virtual ~Charger() {}
+
 
     /********** Properties **********/
 
     /**
-     * @brief Gets the state of the charger.
+     * @brief Gets if the charger is charging an aircraft.
      * 
-     * @return The state of the charger.
+     * @return True if is charging an aircraft, false otherwise.
      */
-    inline State GetState() const { return meState; }
+    inline bool IsCharging() const { return mbCharging; }
+
+    /**
+     * @brief Gets the id of the charger.
+     * 
+     * @return The id of the charger.
+     */
+    virtual uint8_t GetId() const { return muiChargerId; }
 
 
     /********** Methods **********/
 
     /**
-     * @brief Charge the aircraft.
-     * 
-     * @param oAircraft     The aircraft to charge.
-     * 
-     * @return The time it takes to charge the aircraft in hours.
+     * @brief Start charging the aircraft.
+     *
      */
-    virtual float ChargeAircraft(Aircraft* oAircraft);
+    virtual void StartCharging();
 
     /**
      * @brief Stop charging the aircraft.
@@ -49,8 +63,17 @@ public:
      */
     virtual void StopCharging();
 
-protected:
-    State meState;
+    /**
+     * @brief Get the name of the charger.
+     * 
+     * @return The name of the charger.
+     */
+    virtual string GetName() const;
+
+private:
+    bool mbCharging;       // If the charger is charging an aircraft.
+    uint8_t muiChargerId;  // The charger id.
+    static uint8_t muiTotalChargers; // The total number of chargers.
 };
 
 #endif // _CHARGER_H_
