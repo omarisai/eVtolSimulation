@@ -1,0 +1,254 @@
+Creating a simple world with 20 aircrafts and 3 chargers.
+
+Aircrafts added to the world:
+Alpha: 4
+ Alpha-0 Alpha-1 Alpha-2 Alpha-3
+Bravo: 5
+ Bravo-0 Bravo-1 Bravo-2 Bravo-3 Bravo-4
+Charlie: 5
+ Charlie-0 Charlie-1 Charlie-2 Charlie-3 Charlie-4
+Delta: 2
+ Delta-0 Delta-1
+Echo: 4
+ Echo-0 Echo-1 Echo-2 Echo-3
+
+Chargers added to the world:
+ Charger-0 Charger-1 Charger-2
+
+
+============================================
+ Running the simulation for 3 hours.
+============================================
+
+Number of aircrafts in the world: 20
+Number of chargers in the world: 3
+
+Simulation events:
+0.00: Aircraft Bravo-0 is taking off and will fly 66.666664 miles for 0.666667 hours.
+0.00: Aircraft Charlie-0 is taking off and will fly 100.000000 miles for 0.625000 hours.
+0.00: Aircraft Echo-0 is taking off and will fly 25.862068 miles for 0.862069 hours.
+0.00: Aircraft Alpha-0 is taking off and will fly 200.000000 miles for 1.666667 hours.
+0.00: Aircraft Echo-1 is taking off and will fly 25.862068 miles for 0.862069 hours.
+0.00: Aircraft Echo-2 is taking off and will fly 25.862068 miles for 0.862069 hours.
+0.00: Aircraft Delta-0 is taking off and will fly 150.000000 miles for 1.666667 hours.
+0.00: Aircraft Delta-1 is taking off and will fly 150.000000 miles for 1.666667 hours.
+0.00: Aircraft Charlie-1 is taking off and will fly 100.000000 miles for 0.625000 hours.
+0.00: Aircraft Echo-3 is taking off and will fly 25.862068 miles for 0.862069 hours.
+0.00: Aircraft Alpha-1 is taking off and will fly 200.000000 miles for 1.666667 hours.
+0.00: Aircraft Alpha-2 is taking off and will fly 200.000000 miles for 1.666667 hours.
+0.00: Aircraft Bravo-1 is taking off and will fly 66.666664 miles for 0.666667 hours.
+0.00: Aircraft Charlie-2 is taking off and will fly 100.000000 miles for 0.625000 hours.
+0.00: Aircraft Bravo-2 is taking off and will fly 66.666664 miles for 0.666667 hours.
+0.00: Aircraft Bravo-3 is taking off and will fly 66.666664 miles for 0.666667 hours.
+0.00: Aircraft Alpha-3 is taking off and will fly 200.000000 miles for 1.666667 hours.
+0.00: Aircraft Charlie-3 is taking off and will fly 100.000000 miles for 0.625000 hours.
+0.00: Aircraft Charlie-4 is taking off and will fly 100.000000 miles for 0.625000 hours.
+0.00: Aircraft Bravo-4 is taking off and will fly 66.666664 miles for 0.666667 hours.
+0.62: Aircraft Charlie-0 has landed.
+0.62: Aircraft Charlie-1 has landed.
+0.62: Aircraft Charlie-2 has landed.
+0.62: Aircraft Charlie-3 has landed.
+0.62: Aircraft Charlie-4 has landed.
+0.62: Aircraft Charlie-0 is charging at Charger-0 for 0.8 hours.
+0.62: Aircraft Charlie-1 is charging at Charger-1 for 0.8 hours.
+0.62: Aircraft Charlie-2 is charging at Charger-2 for 0.8 hours.
+0.62: Aircraft Charlie-3 is waiting for a free charger.
+0.62: Aircraft Charlie-4 is waiting for a free charger.
+0.67: Aircraft Bravo-0 has landed.
+0.67: Aircraft Bravo-1 has landed.
+0.67: Aircraft Bravo-2 has landed.
+0.67: Aircraft Bravo-3 has landed.
+0.67: Aircraft Bravo-4 has landed.
+0.67: Aircraft Bravo-0 is waiting for a free charger.
+0.67: Aircraft Bravo-1 is waiting for a free charger.
+0.67: Aircraft Bravo-2 is waiting for a free charger.
+0.67: Aircraft Bravo-3 is waiting for a free charger.
+0.67: Aircraft Bravo-4 is waiting for a free charger.
+0.86: Aircraft Echo-0 has landed.
+0.86: Aircraft Echo-1 has landed.
+0.86: Aircraft Echo-2 has landed.
+0.86: Aircraft Echo-3 has landed.
+0.86: Aircraft Echo-0 is waiting for a free charger.
+0.86: Aircraft Echo-1 is waiting for a free charger.
+0.86: Aircraft Echo-2 is waiting for a free charger.
+0.86: Aircraft Echo-3 is waiting for a free charger.
+1.42: Aircraft Charlie-0 has been charged up to 220 kWh, and has been disconnected from Charger-0.
+1.42: Aircraft Charlie-3 is charging at Charger-0 for 0.8 hours.
+1.42: Aircraft Charlie-1 has been charged up to 220 kWh, and has been disconnected from Charger-1.
+1.42: Aircraft Charlie-4 is charging at Charger-1 for 0.8 hours.
+1.42: Aircraft Charlie-2 has been charged up to 220 kWh, and has been disconnected from Charger-2.
+1.42: Aircraft Bravo-0 is charging at Charger-2 for 0.2 hours.
+1.42: Aircraft Charlie-0 is taking off and will fly 99.999992 miles for 0.625000 hours.
+1.42: Aircraft Charlie-1 is taking off and will fly 99.999992 miles for 0.625000 hours.
+1.42: Aircraft Charlie-2 is taking off and will fly 99.999992 miles for 0.625000 hours.
+1.62: Aircraft Bravo-0 has been charged up to 100 kWh, and has been disconnected from Charger-2.
+1.62: Aircraft Bravo-1 is charging at Charger-2 for 0.2 hours.
+1.62: Aircraft Bravo-0 is taking off and will fly 66.666649 miles for 0.666667 hours.
+1.67: Aircraft Alpha-0 has landed.
+1.67: Aircraft Delta-0 has landed.
+1.67: Aircraft Delta-1 has landed.
+1.67: Aircraft Alpha-1 has landed.
+1.67: Aircraft Alpha-2 has landed.
+1.67: Aircraft Alpha-3 has landed.
+1.67: Aircraft Alpha-0 is waiting for a free charger.
+1.67: Aircraft Delta-0 is waiting for a free charger.
+1.67: Aircraft Delta-1 is waiting for a free charger.
+1.67: Aircraft Alpha-1 is waiting for a free charger.
+1.67: Aircraft Alpha-2 is waiting for a free charger.
+1.67: Aircraft Alpha-3 is waiting for a free charger.
+1.83: Aircraft Bravo-1 has been charged up to 100 kWh, and has been disconnected from Charger-2.
+1.83: Aircraft Bravo-2 is charging at Charger-2 for 0.2 hours.
+1.83: Aircraft Bravo-1 is taking off and will fly 66.666664 miles for 0.666667 hours.
+2.03: Aircraft Bravo-2 has been charged up to 100 kWh, and has been disconnected from Charger-2.
+2.03: Aircraft Bravo-3 is charging at Charger-2 for 0.2 hours.
+2.03: Aircraft Bravo-2 is taking off and will fly 66.666649 miles for 0.666667 hours.
+2.05: Aircraft Charlie-0 has landed.
+2.05: Aircraft Charlie-1 has landed.
+2.05: Aircraft Charlie-2 has landed.
+2.05: Aircraft Charlie-0 is waiting for a free charger.
+2.05: Aircraft Charlie-1 is waiting for a free charger.
+2.05: Aircraft Charlie-2 is waiting for a free charger.
+2.22: Aircraft Charlie-3 has been charged up to 220 kWh, and has been disconnected from Charger-0.
+2.22: Aircraft Bravo-4 is charging at Charger-0 for 0.2 hours.
+2.22: Aircraft Charlie-4 has been charged up to 220 kWh, and has been disconnected from Charger-1.
+2.22: Aircraft Echo-0 is charging at Charger-1 for 0.3 hours.
+2.22: Aircraft Charlie-3 is taking off and will fly 99.999992 miles for 0.625000 hours.
+2.22: Aircraft Charlie-4 is taking off and will fly 99.999992 miles for 0.625000 hours.
+2.23: Aircraft Bravo-3 has been charged up to 100 kWh, and has been disconnected from Charger-2.
+2.23: Aircraft Echo-1 is charging at Charger-2 for 0.3 hours.
+2.23: Aircraft Bravo-3 is taking off and will fly 66.666664 miles for 0.666667 hours.
+2.29: Aircraft Bravo-0 has landed.
+2.29: Aircraft Bravo-0 is waiting for a free charger.
+2.42: Aircraft Bravo-4 has been charged up to 100 kWh, and has been disconnected from Charger-0.
+2.42: Aircraft Echo-2 is charging at Charger-0 for 0.3 hours.
+2.42: Aircraft Bravo-4 is taking off and will fly 57.500004 miles for 0.575000 hours.
+2.49: Aircraft Bravo-1 has landed.
+2.49: Aircraft Bravo-1 is waiting for a free charger.
+2.52: Aircraft Echo-0 has been charged up to 150 kWh, and has been disconnected from Charger-1.
+2.52: Aircraft Echo-3 is charging at Charger-1 for 0.3 hours.
+2.52: Aircraft Echo-0 is taking off and will fly 14.250004 miles for 0.475000 hours.
+2.53: Aircraft Echo-1 has been charged up to 150 kWh, and has been disconnected from Charger-2.
+2.53: Aircraft Alpha-0 is charging at Charger-2 for 0.475 hours.
+2.53: Aircraft Echo-1 is taking off and will fly 14.249997 miles for 0.475000 hours.
+2.69: Aircraft Bravo-2 has landed.
+2.69: Aircraft Bravo-2 is waiting for a free charger.
+2.72: Aircraft Echo-2 has been charged up to 150 kWh, and has been disconnected from Charger-0.
+2.72: Aircraft Delta-0 is charging at Charger-0 for 0.275 hours.
+2.72: Aircraft Echo-2 is taking off and will fly 8.250003 miles for 0.275000 hours.
+2.82: Aircraft Echo-3 has been charged up to 150 kWh, and has been disconnected from Charger-1.
+2.82: Aircraft Delta-1 is charging at Charger-1 for 0.175 hours.
+2.82: Aircraft Echo-3 is taking off and will fly 5.250006 miles for 0.175000 hours.
+2.85: Aircraft Charlie-3 has landed.
+2.85: Aircraft Charlie-4 has landed.
+2.85: Aircraft Charlie-3 is waiting for a free charger.
+2.85: Aircraft Charlie-4 is waiting for a free charger.
+2.89: Aircraft Bravo-3 has landed.
+2.89: Aircraft Bravo-3 is waiting for a free charger.
+3.00: Aircraft Bravo-4 has landed.
+3.00: Aircraft Echo-0 has landed.
+3.00: Aircraft Alpha-0 has been charged up to 253.333 kWh, and has been disconnected from Charger-2.
+3.00: Aircraft Echo-1 has landed.
+3.00: Aircraft Delta-0 has been charged up to 53.2258 kWh, and has been disconnected from Charger-0.
+3.00: Aircraft Echo-2 has landed.
+3.00: Aircraft Delta-1 has been charged up to 33.871 kWh, and has been disconnected from Charger-1.
+3.00: Aircraft Echo-3 has landed.
+3.00: Aircraft Alpha-1 is not waiting for a free charger anymore.
+3.00: Aircraft Alpha-2 is not waiting for a free charger anymore.
+3.00: Aircraft Alpha-3 is not waiting for a free charger anymore.
+3.00: Aircraft Charlie-0 is not waiting for a free charger anymore.
+3.00: Aircraft Charlie-1 is not waiting for a free charger anymore.
+3.00: Aircraft Charlie-2 is not waiting for a free charger anymore.
+3.00: Aircraft Bravo-0 is not waiting for a free charger anymore.
+3.00: Aircraft Bravo-1 is not waiting for a free charger anymore.
+3.00: Aircraft Bravo-2 is not waiting for a free charger anymore.
+3.00: Aircraft Charlie-3 is not waiting for a free charger anymore.
+3.00: Aircraft Charlie-4 is not waiting for a free charger anymore.
+3.00: Aircraft Bravo-3 is not waiting for a free charger anymore.
+
+End of simulation events.
+
+
+===============================================
+ Simulation statistics per aircraft type
+===============================================
+
+Total number of aircrafts types: 5
+Total number of aircrafts: 20
+Total number of chargers: 3
+
+Aircraft type: Alpha
+-----------------------------------------------
+Total number of aircrafts: 4
+Passenger capacity per aircraft: 4 passengers
+Total number of flights: 4
+Total number of miles: 800.000000
+Total number of passengers: 16
+Total number of charge sessions: 1
+
+Average flight time per flight: 1.666667 hours
+Average distance travelled per flight: 200.000000 miles
+Average time charging per charge session: 0.475000 hours
+Total number of faults: 2
+Total number of passenger miles: 12800.000000
+
+Aircraft type: Bravo
+-----------------------------------------------
+Total number of aircrafts: 5
+Passenger capacity per aircraft: 5 passengers
+Total number of flights: 10
+Total number of miles: 657.499939
+Total number of passengers: 50
+Total number of charge sessions: 5
+
+Average flight time per flight: 0.657500 hours
+Average distance travelled per flight: 65.749992 miles
+Average time charging per charge session: 0.200000 hours
+Total number of faults: 1
+Total number of passenger miles: 32874.996094
+
+Aircraft type: Charlie
+-----------------------------------------------
+Total number of aircrafts: 5
+Passenger capacity per aircraft: 3 passengers
+Total number of flights: 10
+Total number of miles: 1000.000000
+Total number of passengers: 30
+Total number of charge sessions: 5
+
+Average flight time per flight: 0.625000 hours
+Average distance travelled per flight: 100.000000 miles
+Average time charging per charge session: 0.800000 hours
+Total number of faults: 0
+Total number of passenger miles: 30000.000000
+
+Aircraft type: Delta
+-----------------------------------------------
+Total number of aircrafts: 2
+Passenger capacity per aircraft: 2 passengers
+Total number of flights: 2
+Total number of miles: 300.000000
+Total number of passengers: 4
+Total number of charge sessions: 2
+
+Average flight time per flight: 1.666667 hours
+Average distance travelled per flight: 150.000000 miles
+Average time charging per charge session: 0.225000 hours
+Total number of faults: 0
+Total number of passenger miles: 1200.000000
+
+Aircraft type: Echo
+-----------------------------------------------
+Total number of aircrafts: 4
+Passenger capacity per aircraft: 2 passengers
+Total number of flights: 8
+Total number of miles: 145.448273
+Total number of passengers: 16
+Total number of charge sessions: 4
+
+Average flight time per flight: 0.606035 hours
+Average distance travelled per flight: 18.181034 miles
+Average time charging per charge session: 0.300000 hours
+Total number of faults: 3
+Total number of passenger miles: 2327.172363
+
+===============================================
