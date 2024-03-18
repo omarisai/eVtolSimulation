@@ -53,9 +53,21 @@ Please do not hesitate to reach out to ask any questions about the problem! Howe
    so aircraft is always referring to a eVTOL aircraft.
  - We don't need to simulate large quantities of aircrafts or chargers, limiting up to 255.
  - Limiting the simulation time to 65535, even 255 could be a long simulation time.
- - We want the flexibility to load different kind of worlds, for example a 2D world were chargers has
+ - I think that maybe the intention of having different companies was to define a base Aircraft class and
+   derived classes for each company having statistics in static members to share the values per type,
+   but I consider having a class to define the AircraftTypes is making more efficient the work of programming
+   and maintaining this code.
+ - I would like the flexibility to load different kind of worlds, for example a 2D world were chargers has
    different X,Y locations and aircrafts has to do travels from/to defined locations, for this reason
    I am creating a base class called SimulationWorld.
+ - Companies list cannot be updated at runtime, companies constructor is privated, the intention is
+   to prevent at some level doing unwanted copies of companies objects, that's why we just have a getter
+   to retrive the pointer to the companies created at start-up.
+
+# Additional TODOs
+ - Create unit tests for the remaining classes.
+ - Count the number of simulations and the total simulation time, and add that info to the statistics.
+ - Add another simulation world with 2 spacial dimensions, 
 
 # Coding guidelines
 
