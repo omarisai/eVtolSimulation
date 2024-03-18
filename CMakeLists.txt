@@ -31,8 +31,8 @@ set(COMMON_SOURCES
 )
 set(TARGET_SOURCES main.cpp)
 set(TEST_SOURCES
-    aircrafts/test_Aircraft.cpp
-    aircrafts/test_AircraftType.cpp
+    aircrafts/Aircraft.cxx
+    aircrafts/AircraftType.cxx
 )
 
 add_executable(simulation ${COMMON_SOURCES} ${TARGET_SOURCES})
