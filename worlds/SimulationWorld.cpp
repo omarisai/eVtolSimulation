@@ -77,14 +77,20 @@ void SimulationWorld::PrintStatistics() const
         // Print the statistics for the aircraft type.
         cout << "Aircraft type: " << poAircraftType->CompanyName() << endl;
         cout << "-----------------------------------------------" << endl;
+        cout << "Total number of aircrafts: " << to_string(poAircraftType->TotalAircrafts()) << endl;
+        cout << "Passenger capacity per aircraft: " << to_string(poAircraftType->GetPassengers()) << " passengers" << endl;
         cout << "Total number of flights: " << to_string(poAircraftType->TotalFlights()) << endl;
         cout << "Total number of miles: " << to_string(poAircraftType->TotalNumberOfMiles()) << endl;
         cout << "Total number of passengers: " << to_string(poAircraftType->TotalNumberOfPassengers()) << endl;
-        cout << "Total number of passenger miles: " << to_string(poAircraftType->TotalNumberOfPassengerMiles()) << endl;
-        cout << "Total number of faults: " << to_string(poAircraftType->TotalNumberOfFaults()) << endl;
+        cout << "Total number of charge sessions: " << to_string(poAircraftType->TotalChargeSessions()) << endl;
+        cout << endl;
         cout << "Average flight time per flight: " << to_string(poAircraftType->AverageFlightTimePerFlight()) << " hours" << endl;
         cout << "Average distance travelled per flight: " << to_string(poAircraftType->AverageDistanceTravelledPerFlight()) << " miles" << endl;
         cout << "Average time charging per charge session: " << to_string(poAircraftType->AverageTimeChargingPerChargeSession()) << " hours" << endl;
+        cout << "Total number of faults: " << to_string(poAircraftType->TotalNumberOfFaults()) << endl;
+        cout << "Total number of passenger miles: " << to_string(poAircraftType->TotalNumberOfPassengerMiles()) << endl;
         cout << endl;
     }
+
+    cout << "===============================================" << endl;
 }

@@ -58,7 +58,7 @@ AircraftType::AircraftType(AircraftCompany eCompany,
 
 float AircraftType::TotalNumberOfPassengerMiles() const
 {
-    return mkuiPassengers * mfTotalNumberOfMiles;
+    return TotalNumberOfPassengers() * mfTotalNumberOfMiles;
 }
 
 float AircraftType::AverageFlightTimePerFlight() const

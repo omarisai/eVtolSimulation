@@ -144,7 +144,7 @@ public:
      * 
      * @return The total number of miles. 
      */
-    inline uint16_t TotalNumberOfMiles() const { return mfTotalNumberOfMiles; }
+    inline float TotalNumberOfMiles() const { return mfTotalNumberOfMiles; }
 
     /**
      * @brief Get the total number of passengers transported by the aircrafts of this type.
