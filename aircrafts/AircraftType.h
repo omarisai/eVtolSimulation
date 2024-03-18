@@ -16,7 +16,7 @@ using namespace std;
  *       the enum values or get the total number of companies.
  * 
  */
-enum class AircraftCompany
+enum class AircraftCompany : uint8_t
 {
     Alpha,
     Bravo,

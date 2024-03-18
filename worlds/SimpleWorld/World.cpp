@@ -9,10 +9,12 @@
 #include "Event.h"
 #include "aircrafts/Aircraft.h"
 
-#include <cstdlib>
+#include <algorithm>
 #include <iostream>
+#include <cstdlib>
 #include <sstream>
 #include <iomanip>
+#include <ctime>
 #include <map>
 
 using namespace std;
@@ -36,7 +38,8 @@ namespace SimpleWorld
 
         cout << "Aircrafts added to the world:";
 
-        // TODO: Use a random seed based on the current time.
+        // Set the random seed for the aircrafts creation.
+        srand(static_cast<unsigned int>(time(0)));
 
         // Create the aircrafts from the start, choosing a random
         // company for each one.
@@ -110,11 +113,20 @@ namespace SimpleWorld
         // Indicate the start of the simulation events.
         cout << "Simulation events:" << endl;
 
-        // Create the events for the aircrafts.
+        // Create the events for the aircrafts depending on its current state.
         for (Aircraft* poAircraft : GetAircrafts())
         {
-            // Schedule a event for the aircraft to take off.
-            ScheduleEvent(0, poAircraft, AircraftEvent::TakeOff);
+            // Check if the aircraft has full battery charge.
+            if (poAircraft->GetBatteryCharge() == poAircraft->GetAircraftType()->GetBatteryCapacity())
+            {
+                // Schedule a event for the aircraft to take off.
+                ScheduleEvent(0, poAircraft, AircraftEvent::TakeOff);
+            }
+            else
+            {
+                // Schedule a event for the aircraft to charge.
+                ScheduleEvent(0, poAircraft, AircraftEvent::Charge);
+            }
         }
         
         // Process the events until reaching the end of the simulation.
@@ -129,6 +141,18 @@ namespace SimpleWorld
 
             // Process the event.
             ProcessEvent(&oEvent);
+        }
+
+        // Free the charging queue.
+        while (moAircraftsQueue.size() > 0)
+        {
+            // Get the first aircraft in the queue.
+            Aircraft* poAircraft = moAircraftsQueue.front();
+            moAircraftsQueue.pop();
+
+            // Print that the aircraft is not waiting to be charged anymore.
+            cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
+                << " is not waiting for a free charger anymore." << endl;
         }
 
         // Indicate the end of the simulation events.
@@ -182,11 +206,28 @@ namespace SimpleWorld
 
     void World::ChargeAircraft(Aircraft* poAircraft, Charger* poCharger)
     {
-        // Charge the aircraft.
-        float fTime = poAircraft->ChargeAircraft(poCharger);
+        // Get the time it takes to fully charge the aircraft in hours.
+        float fTimeToCharge = poAircraft->GetTimeToFullCharge();
 
-        // Schedule the StopCharge event to happen when the aircraft is fully charged.
-        fTime = ScheduleEvent(fTime, poAircraft, AircraftEvent::StopCharge);
+        // Schedule the StopCharge event to happen when the aircraft
+        // stops charging, and get the real charging time in case the
+        // simulation time ends sooner.
+        fTimeToCharge = ScheduleEvent(fTimeToCharge, poAircraft, AircraftEvent::StopCharge);
+
+        // Abort charging if the simulation already ended.
+        if (fTimeToCharge == 0)
+        {
+            return;
+        }
+
+        // Get the charging rate of the aircraft.
+        float fChargingRate = poAircraft->GetAircraftType()->GetBatteryCapacity() / poAircraft->GetAircraftType()->GetTimeToCharge();
+
+        // Get the energy to charge the aircraft without exceeding the battery capacity.
+        float fEnergy =  min(fTimeToCharge * fChargingRate, poAircraft->GetAircraftType()->GetBatteryCapacity() - poAircraft->GetBatteryCharge());
+
+        // Charge the aircraft.
+        float fTime = poAircraft->ChargeAircraft(poCharger, fEnergy);
 
         // Print that the aircraft is charging.
         cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
@@ -196,47 +237,58 @@ namespace SimpleWorld
 
     void World::ProcessEvent(Event* poEvent)
     {
+        // Get the aircraft involved in the event.
+        Aircraft* poAircraft = poEvent->GetAircraft();
+
         // Execute the event.
         switch (poEvent->GetType())
         {
             case AircraftEvent::TakeOff:
             {
-                // Take off the aircraft and get the time it will take to discharge de battery.
-                float fTime = poEvent->GetAircraft()->TakeOff();
+                // Get the flying time for the aircraft.
+                float fFlyingTime = poAircraft->GetCurrentRange() / poAircraft->GetAircraftType()->GetCruiseSpeed();
 
-                // Schedule the land event to happen when the aircraft will be out of battery.
-                fTime = ScheduleEvent(fTime, poEvent->GetAircraft(), AircraftEvent::Land, true);
+                // Schedule the land event to happen when the aircraft will be out of battery,
+                // and get the real flying time in case the simulation time ends sooner.
+                fFlyingTime = ScheduleEvent(fFlyingTime, poAircraft, AircraftEvent::Land, true);
+
+                // Get the distance the aircraft will fly in the flying time without exceeding the current range.
+                float fDistance = min(fFlyingTime * poAircraft->GetAircraftType()->GetCruiseSpeed(), poAircraft->GetCurrentRange());
+
+                // Fly the aircraft.
+                poAircraft->Fly(fDistance);
 
                 // Print that the aircraft is taking off.
-                cout << GetTimeString() << ": Aircraft " << poEvent->GetAircraft()->GetName()
-                    << " is taking off and will fly for " << to_string(fTime) << " hours." << endl;
+                cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
+                    << " is taking off and will fly " << to_string(fDistance) << " miles for "
+                    << to_string(fFlyingTime) << " hours." << endl;
             }
             break;
 
             case AircraftEvent::Land:
             {
                 // Land the aircraft.
-                poEvent->GetAircraft()->Land();
+                poAircraft->Land();
 
                 // Schedule the charge event to inmediately charge the aircraft.
-                ScheduleEvent(0, poEvent->GetAircraft(), AircraftEvent::Charge);
+                ScheduleEvent(0, poAircraft, AircraftEvent::Charge);
 
-                // Print that the aircraft is landing.
-                cout << GetTimeString() << ": Aircraft " << poEvent->GetAircraft()->GetName()
-                    << " is landing." << endl;
+                // Print that the aircraft had landed.
+                cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
+                    << " has landed." << endl;
             }
             break;
 
             case AircraftEvent::Charge:
             {
                 // Find an available charger for the aircraft or wait in the queue.
-                if (!AssignCharger(poEvent->GetAircraft()))
+                if (!AssignCharger(poAircraft))
                 {
                     // If the aircraft is not charging, add the aircraft to the queue.
-                    moAircraftsQueue.push(poEvent->GetAircraft());
+                    moAircraftsQueue.push(poAircraft);
 
                     // Print that the aircraft is waiting to be charged.
-                    cout << GetTimeString() << ": Aircraft " << poEvent->GetAircraft()->GetName()
+                    cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
                         << " is waiting for a free charger." << endl;
                 }
             }
@@ -245,14 +297,15 @@ namespace SimpleWorld
             case AircraftEvent::StopCharge:
             {
                 // Stop charging the aircraft and get the newly available charger.
-                Charger* poCharger = poEvent->GetAircraft()->StopCharging();
+                Charger* poCharger = poAircraft->StopCharging();
 
                 // Schedule the take off event to inmediately take off the aircraft.
-                ScheduleEvent(0, poEvent->GetAircraft(), AircraftEvent::TakeOff);
+                ScheduleEvent(0, poAircraft, AircraftEvent::TakeOff);
 
                 // Print that the aircraft is fully charged.
-                cout << GetTimeString() << ": Aircraft " << poEvent->GetAircraft()->GetName()
-                    << " is fully charged and leaving " << poCharger->GetName() << "." << endl;
+                cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
+                    << " has been charged up to " << poAircraft->GetBatteryCharge()
+                    << " kWh, and is disconnecting from " << poCharger->GetName() << "." << endl;
 
                 // Check if there are aircrafts waiting to be charged.
                 if (moAircraftsQueue.size() > 0)
