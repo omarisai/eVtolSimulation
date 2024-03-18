@@ -77,8 +77,10 @@ namespace SimpleWorld
          *
          * @param poAircraft    The aircraft to charge.
          * @param poCharger     The charger to use.
+         * 
+         * @return If the aircraft is charging.
          */
-        void ChargeAircraft(Aircraft* poAircraft, Charger* poCharger);
+        bool ChargeAircraft(Aircraft* poAircraft, Charger* poCharger);
 
         /**
          * @brief Process an event.

@@ -36,10 +36,10 @@ namespace SimpleWorld
         cout << "Creating a simple world with " << to_string(uiAircrafts) << " aircrafts and "
             << to_string(uiChargers) << " chargers." << endl << endl;
 
-        cout << "Aircrafts added to the world:";
+        cout << "Aircrafts added to the world:" << endl;
 
         // Set the random seed for the aircrafts creation.
-        srand(static_cast<unsigned int>(time(0)));
+        //srand(static_cast<unsigned int>(time(0)));
 
         // Create the aircrafts from the start, choosing a random
         // company for each one.
@@ -54,12 +54,30 @@ namespace SimpleWorld
 
             // Add the aircraft to the world.
             AddAircraft(poAircraft);
-
-            // Print that the aircraft was added to the world.
-            cout << " " << poAircraft->GetName();
         }
 
-        cout << endl << endl << "Chargers added to the world:";
+        // Print the aircrafts added to the world in groups per type.
+        for (uint8_t i = 0; i < static_cast<uint8_t>(AircraftCompany::TotalCompanies); i++)
+        {
+            // Get the pointer to the aircraft type.
+            AircraftType* poAircraftType = AircraftType::GetAircraftType(static_cast<AircraftCompany>(i));
+
+            // Print the company name and the number of aircrafts of that type.
+            cout << poAircraftType->CompanyName() << ": " << to_string(poAircraftType->TotalAircrafts()) << endl;
+
+            // Print the aircrafts of that type.
+            for (Aircraft* poAircraft : GetAircrafts())
+            {
+                if (poAircraft->GetAircraftType() == poAircraftType)
+                {
+                    cout << " " << poAircraft->GetName();
+                }
+            }
+
+            cout << endl;
+        }
+
+        cout << endl << endl << "Chargers added to the world:" << endl;
 
         // Create the chargers from the start.
         for (uint8_t i = 0; i < uiChargers; i++)
@@ -204,7 +222,7 @@ namespace SimpleWorld
         return false;
     }
 
-    void World::ChargeAircraft(Aircraft* poAircraft, Charger* poCharger)
+    bool World::ChargeAircraft(Aircraft* poAircraft, Charger* poCharger)
     {
         // Get the time it takes to fully charge the aircraft in hours.
         float fTimeToCharge = poAircraft->GetTimeToFullCharge();
@@ -217,7 +235,7 @@ namespace SimpleWorld
         // Abort charging if the simulation already ended.
         if (fTimeToCharge == 0)
         {
-            return;
+            return false;
         }
 
         // Get the charging rate of the aircraft.
@@ -233,6 +251,8 @@ namespace SimpleWorld
         cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
             << " is charging at " << poCharger->GetName()
             << " for " << fTime << " hours." << endl;
+
+        return true;
     }
 
     void World::ProcessEvent(Event* poEvent)
@@ -312,10 +332,13 @@ namespace SimpleWorld
                 {
                     // Get the first aircraft in the queue.
                     Aircraft* poAircraft = moAircraftsQueue.front();
-                    moAircraftsQueue.pop();
 
-                    // Charge the aircraft.
-                    ChargeAircraft(poAircraft, poCharger);
+                    // Try to charge the aircraft.
+                    if (ChargeAircraft(poAircraft, poCharger))
+                    {
+                        // Remove the aircraft from the queue.
+                        moAircraftsQueue.pop();
+                    }
                 }
             }
             break;
