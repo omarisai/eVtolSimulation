@@ -50,12 +50,6 @@ namespace SimpleWorld
          */
         void RunSimulation(uint16_t uiHours) override;
 
-        /**
-         * @brief Print the statistics of the world.
-         * 
-         */
-        void PrintStatistics() const override;
-
     private:
         /**
          * @brief Schedule an event.

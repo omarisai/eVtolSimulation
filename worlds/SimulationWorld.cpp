@@ -7,6 +7,7 @@
 #include "SimulationWorld.h"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -52,4 +53,38 @@ bool SimulationWorld::AddCharger(Charger* oCharger)
 
     // TODO: Throw an exception if there is no space for the charger.
     return false;
+}
+
+void SimulationWorld::PrintStatistics() const
+{
+    // Print the maximum number of aircrafts and chargers.
+    cout << endl;
+    cout << "===============================================" << endl;
+    cout << " Simulation statistics per aircraft type" << endl;
+    cout << "===============================================" << endl << endl;
+    cout << "Total number of aircrafts types: " << to_string((int)AircraftCompany::TotalCompanies) << endl;
+    cout << "Total number of aircrafts: " << to_string(moAircrafts.size()) << endl;
+    cout << "Total number of chargers: " << to_string(moChargers.size()) << endl;
+    cout << endl;
+
+    // Iterate the aircraft types.
+    for (int i = 0; i < static_cast<int>(AircraftCompany::TotalCompanies); i++)
+    {
+        // Get the aircraft type.
+        AircraftCompany eCompany = static_cast<AircraftCompany>(i);
+        AircraftType* poAircraftType = AircraftType::GetAircraftType(eCompany);
+
+        // Print the statistics for the aircraft type.
+        cout << "Aircraft type: " << poAircraftType->CompanyName() << endl;
+        cout << "-----------------------------------------------" << endl;
+        cout << "Total number of flights: " << to_string(poAircraftType->TotalFlights()) << endl;
+        cout << "Total number of miles: " << to_string(poAircraftType->TotalNumberOfMiles()) << endl;
+        cout << "Total number of passengers: " << to_string(poAircraftType->TotalNumberOfPassengers()) << endl;
+        cout << "Total number of passenger miles: " << to_string(poAircraftType->TotalNumberOfPassengerMiles()) << endl;
+        cout << "Total number of faults: " << to_string(poAircraftType->TotalNumberOfFaults()) << endl;
+        cout << "Average flight time per flight: " << to_string(poAircraftType->AverageFlightTimePerFlight()) << " hours" << endl;
+        cout << "Average distance travelled per flight: " << to_string(poAircraftType->AverageDistanceTravelledPerFlight()) << " miles" << endl;
+        cout << "Average time charging per charge session: " << to_string(poAircraftType->AverageTimeChargingPerChargeSession()) << " hours" << endl;
+        cout << endl;
+    }
 }

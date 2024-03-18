@@ -35,7 +35,7 @@ TEST_CASE( "Aircraft::GetCurrentRange", )
 {
     // Check if a new aircraft has the full range.
     AircraftCompany eCompany = AircraftCompany::Alpha;
-    AircraftType oAircraftType = AircraftType::msoAircraftTypes[(size_t)eCompany];
+    AircraftType oAircraftType = *AircraftType::GetAircraftType(eCompany);
     Aircraft oAircraft(eCompany);
     REQUIRE(oAircraft.GetCurrentRange() == oAircraftType.GetBatteryCapacity() / oAircraftType.GetEnergyUse());
 
@@ -182,7 +182,7 @@ TEST_CASE( "Aircraft::GetAircraftType", )
 {
     // Check if the aircraft type is correct.
     Aircraft oAircraft(AircraftCompany::Alpha);
-    REQUIRE(oAircraft.GetAircraftType() == &AircraftType::msoAircraftTypes[(size_t)AircraftCompany::Alpha]);
+    REQUIRE(oAircraft.GetAircraftType() == AircraftType::GetAircraftType(AircraftCompany::Alpha));
 }
 
 // Test the Aircraft::GetId() method.

@@ -305,7 +305,7 @@ namespace SimpleWorld
                 // Print that the aircraft is fully charged.
                 cout << GetTimeString() << ": Aircraft " << poAircraft->GetName()
                     << " has been charged up to " << poAircraft->GetBatteryCharge()
-                    << " kWh, and is disconnecting from " << poCharger->GetName() << "." << endl;
+                    << " kWh, and has been disconnected from " << poCharger->GetName() << "." << endl;
 
                 // Check if there are aircrafts waiting to be charged.
                 if (moAircraftsQueue.size() > 0)
@@ -320,13 +320,6 @@ namespace SimpleWorld
             }
             break;
         }
-    }
-
-    void World::PrintStatistics() const
-    {
-        // Print the maximum number of aircrafts and chargers.
-        cout << "Maximum number of aircrafts: " << GetMaxAircrafts() << endl;
-        cout << "Maximum number of chargers: " << GetMaxChargers() << endl;
     }
 
     string World::GetTimeString() const

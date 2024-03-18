@@ -18,7 +18,10 @@ Aircraft::Aircraft(AircraftCompany eCompany)
     }
 
     // Set the aircraft type.
-    mpoAircraftType = &AircraftType::msoAircraftTypes[(size_t)eCompany];
+    mpoAircraftType = AircraftType::GetAircraftType(eCompany);
+
+    // Register the aircraft and get the aircraft Id.
+    muiAircraftId = mpoAircraftType->RegisterAircraft();
 
     // The aircraft is not flying.
     mbIsFlying = false;
@@ -28,9 +31,6 @@ Aircraft::Aircraft(AircraftCompany eCompany)
 
     // The battery is fully charged.
     mfBatteryCharge = mpoAircraftType->GetBatteryCapacity();
-
-    // Set the aircraft Id.
-    muiAircraftId = mpoAircraftType->muiTotalAircrafts++;
 }
 
 string Aircraft::GetName() const
@@ -79,7 +79,13 @@ float Aircraft::Fly(float fDistance)
     mbIsFlying = true;
 
     // The time the aircraft will be flying in hours.
-    return fDistance / mpoAircraftType->GetCruiseSpeed();
+    float fFlyingTime = fDistance / mpoAircraftType->GetCruiseSpeed();
+
+    // Report the flight.
+    mpoAircraftType->ReportFlight(fDistance, fFlyingTime);
+
+    // Return the time the aircraft will be flying in hours.
+    return fFlyingTime;
 }
 
 void Aircraft::Land()
@@ -129,6 +135,9 @@ float Aircraft::ChargeAircraft(Charger* poCharger, float fEnergy)
 
     // Get the time it will take to charge the aircraft in hours.
     float fTimeToCharge = mpoAircraftType->GetTimeToCharge() * fEnergy / mpoAircraftType->GetBatteryCapacity();
+
+    // Report the charge session.
+    mpoAircraftType->ReportChargeSession(fTimeToCharge);
 
     // Return the time it will take to charge the aircraft in hours.
     return fTimeToCharge;

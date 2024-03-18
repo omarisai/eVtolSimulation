@@ -119,11 +119,70 @@ public:
     inline uint16_t TotalNumberOfFaults() const { return muiTotalNumberOfFaults; }
 
     /**
+     * @brief Get the total number of aircrafts of this type.
+     * 
+     * @return The total number of aircrafts. 
+     */
+    inline uint8_t TotalAircrafts() const { return muiTotalAircrafts; }
+
+    /**
+     * @brief Get the total number of flights.
+     * 
+     * @return The total number of flights. 
+     */
+    inline uint16_t TotalFlights() const { return muiTotalFlights; }
+
+    /**
+     * @brief Get the total charge sessions.
+     * 
+     * @return The total charge sessions. 
+     */
+    inline uint16_t TotalChargeSessions() const { return muiTotalChargeSessions; }
+
+    /**
+     * @brief Get the total number of miles travelled by the aircrafts of this type.
+     * 
+     * @return The total number of miles. 
+     */
+    inline uint16_t TotalNumberOfMiles() const { return mfTotalNumberOfMiles; }
+
+    /**
+     * @brief Get the total number of passengers transported by the aircrafts of this type.
+     * 
+     * @return The total number of passengers. 
+     */
+    inline uint16_t TotalNumberOfPassengers() const { return mkuiPassengers * muiTotalFlights; }
+
+
+    /********** Static Methods **********/
+
+    /**
+     * @brief Get an aircraft type by company.
+     * 
+     * @param eCompany  The aircraft company.
+     * 
+     * @return The pointer to the aircraft type.
+     * 
+     * @throws std::runtime_error if the company is not valid.
+     */
+    static AircraftType* GetAircraftType(AircraftCompany eCompany);
+
+
+    /********** Methods **********/
+
+    /**
+     * @brief Register a new aircraft of this type.
+     * 
+     * @return The Id for the new registered aircraft. 
+     */
+    inline uint8_t RegisterAircraft() { return muiTotalAircrafts++; }
+
+    /**
      * @brief Get the total number of passenger miles.
      * 
      * @return The total number of passenger miles. 
      */
-    inline uint16_t TotalNumberOfPassengerMiles() const { return muiTotalNumberOfPassengerMiles; }
+    float TotalNumberOfPassengerMiles() const;
 
     /**
      * @brief Get the average flight time per flight in hours.
@@ -140,11 +199,26 @@ public:
     float AverageDistanceTravelledPerFlight() const;
 
     /**
+     * @brief Report a flight for the aircraft type.
+     * 
+     * @param fFlightTime   The flight time in hours.
+     * @param fDistance     The distance travelled in miles.
+     */ 
+    void ReportFlight(float fFlightTime, float fDistance);
+
+    /**
      * @brief Get the average time charging per charge session in hours.
      * 
      * @return The average time charging. 
      */
     float AverageTimeChargingPerChargeSession() const;
+
+    /**
+     * @brief Report a charging session for the aircraft type.
+     * 
+     * @param fTimeCharging   The time charging in hours.
+     */
+    void ReportChargeSession(float fTimeCharging);
 
     /**
      * @brief Get the aircraft company name in string format.
@@ -154,7 +228,18 @@ public:
     string CompanyName() const;
 
 private:
+    /**
+     * @brief Calculate the number of faults that will occur during a flight.
+     * 
+     * @param fFlightTime   The flight time in hours.
+     * 
+     * @return The number of faults that will occur during the flight.
+     */
+    uint16_t CalculateFaultsPerFlight(float fFlightTime) const;
+
+
     /********** Constants **********/
+
     const AircraftCompany mkeCompany;
     const uint16_t mkuiCruiseSpeed;
     const uint16_t mkuiBatteryCapacity;
@@ -165,15 +250,17 @@ private:
 
     /********** Variables **********/
     uint16_t muiTotalNumberOfFaults;
-    uint16_t muiTotalNumberOfPassengerMiles;
+    uint16_t muiTotalChargeSessions;
+    float mfTotalTimeCharging;
+    float mfTotalNumberOfMiles;
     uint8_t muiTotalAircrafts;
 
-    /********** Static Variables **********/
-public:
-    static AircraftType msoAircraftTypes[];
+    // For the statistics.
+    float mfTotalFlightTime;
+    uint16_t muiTotalFlights;
 
-// TODO: Remove this and add a setter methods for muiTotalAircrafts.
-friend class Aircraft;
+    /********** Static Variables **********/
+    static AircraftType msoAircraftTypes[];
 };
 
 #endif // _AIRCRAFTSPECS_H_

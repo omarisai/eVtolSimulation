@@ -89,7 +89,7 @@ public:
      * @brief Print the world statistics.
      * 
      */
-    virtual void PrintStatistics() const = 0;
+    virtual void PrintStatistics() const;
 
 protected:
     /********** Methods **********/
