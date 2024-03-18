@@ -39,7 +39,7 @@ namespace SimpleWorld
         cout << "Aircrafts added to the world:" << endl;
 
         // Set the random seed for the aircrafts creation.
-        //srand(static_cast<unsigned int>(time(0)));
+        srand(static_cast<unsigned int>(time(0)));
 
         // Create the aircrafts from the start, choosing a random
         // company for each one.
@@ -77,7 +77,7 @@ namespace SimpleWorld
             cout << endl;
         }
 
-        cout << endl << endl << "Chargers added to the world:" << endl;
+        cout << endl << "Chargers added to the world:" << endl;
 
         // Create the chargers from the start.
         for (uint8_t i = 0; i < uiChargers; i++)
@@ -119,14 +119,15 @@ namespace SimpleWorld
         // Set the simulation time.
         SetSimulationTime(uiHours);
 
-        // Print the number of aircrafts in the world.
+        // Print the start of the simulation.
+        cout << endl;
+        cout << "============================================" << endl;
+        cout << " Running the simulation for " << to_string(uiHours) << " hours." << endl;
+        cout << "============================================" << endl << endl;
+
+        // Print the number of aircrafts and chargers in the world.
         cout << "Number of aircrafts in the world: " << GetAircraftsCount() << endl;
-
-        // Print the number of chargers in the world.
-        cout << "Number of chargers in the world: " << GetChargersCount() << endl;
-
-        // Print the number of hours the simulation will run.
-        cout << "Running the simulation for " << to_string(uiHours) << " hours." << endl << endl;
+        cout << "Number of chargers in the world: " << GetChargersCount() << endl << endl;
         
         // Indicate the start of the simulation events.
         cout << "Simulation events:" << endl;

@@ -92,5 +92,5 @@ void SimulationWorld::PrintStatistics() const
         cout << endl;
     }
 
-    cout << "===============================================" << endl;
+    cout << "===============================================" << endl << endl;
 }
