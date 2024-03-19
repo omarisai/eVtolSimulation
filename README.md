@@ -2,7 +2,10 @@
 
 - [Description](#description)
 - [Problem Statement](#problem-statement)
+- [Other assumptions](#other-assumptions)
+- [Additional TODOs](#additional-todos)
 - [Coding guidelines](#coding-guidelines)
+- [Setup](#setup)
 
 
 # Description
@@ -163,3 +166,32 @@ Some coding guidelines to ensure consistency and readability.
 
     #endif // _MY_HEADER_H_
     ```
+
+# Setup
+
+This is the setup I am using to run the code on a Windows 11 machine.
+
+### Tools
+ - Visual Studio Code, [download page here](https://code.visualstudio.com/Download).
+ - MSYS2 for windows, [installation guide here](https://code.visualstudio.com/docs/cpp/config-mingw#_installing-the-mingww64-toolchain).
+
+### Visual Studio Code extensions
+ - [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack): Microsoft extensions to support C/C++ and CMake on VS Code.
+ - [Doxygen Documentation Generator](https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen): Helps with some snippets to create doxygen style documentation.
+ - [C++ TestMate](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter): Helps to discover Catch2 test cases and show them in the *Testing* view of VS Code.
+
+### VS Code settings
+These are the VS Code settings that I am using in my setup:
+ 
+```json
+{
+    "cmake.configureOnOpen": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.cpp": "${capture}.h, ${capture}.cxx",
+    }
+}
+```
+
+The `"explorer.fileNesting.patterns"` option groups the files with .h and .cxx extensions under the .cpp file
+whith the same name.
